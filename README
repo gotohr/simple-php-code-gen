@@ -1,5 +1,5 @@
 Usage:
-
+~~~
 $cg = new \GoToHr\SimpleCodeGen\CodeGenerator(array(
 	'ns' => 'simple\\testns',
 	'classes' => array (
@@ -29,10 +29,11 @@ $cg = new \GoToHr\SimpleCodeGen\CodeGenerator(array(
 ));
 
 $cg->generate();
-
-// or this way...
-
+~~~
+or this way...
+~~~
 $ct = new \GoToHr\SimpleCodeGen\ClassTemplate('test', 'testns');
 $ct->addProperty('first', 'string');
 //$ct->write();
 echo $ct;
+~~~
