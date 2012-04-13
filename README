@@ -7,6 +7,15 @@ $cg = new \GoToHr\SimpleCodeGen\CodeGenerator(array(
 			'properties' => array(
 				'first' => array('type' => 'string'),
 				'second' => array('type' => 'int'),
+			),
+			'methods' => array(
+				'call_me' => array(),
+				'sometimes' => array(
+					'params' => array(
+						'there' => array(),
+						'here' => array('default' => 'null')
+					)
+				)
 			)
 		),
 		'World' => array(
