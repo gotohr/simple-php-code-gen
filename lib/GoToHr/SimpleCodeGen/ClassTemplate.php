@@ -8,6 +8,7 @@ class ClassTemplate {
 	private $doc;
 	
 	private $properties = array();
+	private $methods = array();
 	
 	public function __construct($name, $ns = null, $extends = null, $doc = null) {
 		$this->name = $name;
@@ -30,6 +31,10 @@ class ClassTemplate {
 
 		if (isset($meta['properties'])) {
 			$ct->setProperties($meta['properties']);
+		}
+		
+		if (isset($meta['methods'])) {
+			$ct->setMethods($meta['methods']);
 		}
 		
 		return $ct;
@@ -67,6 +72,30 @@ class ClassTemplate {
 		return $this;
 	}
 
+	public function addMethod($name, $params = array(), $type = null, $doc = null, $access = null) {
+		$this->methods[$name] = new ClassMethodTemplate($name, $params, $type, $doc, $access);
+		return $this;
+	}
+	
+	public function removeMethod($name) {
+		unset($this->methods[$name]);
+		return $this;
+	}
+	
+	public function setMethods($methods) {
+		$this->methods = array();
+		foreach ($methods as $method_name => $method_def) {
+			$this->addMethod(
+				isset($method_def['name']) ? $method_def['name'] : $method_name, 
+				isset($method_def['params']) ? $method_def['params'] : array(), 
+				isset($method_def['type']) ? $method_def['type'] : null, 
+				isset($method_def['doc']) ? $method_def['doc'] : null, 
+				isset($method_def['access']) ? $method_def['access'] : null 
+			);
+		}
+		return $this;
+	}
+
 	public function write($path = './') {
 		$filename = $this->name.'.php';
 		if ($this->ns) {
@@ -96,6 +125,9 @@ class ClassTemplate {
 		$out.='{'.PHP_EOL;
 		foreach ($this->properties as $prop) {
 			$out.= $prop;
+		}
+		foreach ($this->methods as $method) {
+			$out.= $method;
 		}
 		$out.='}'.PHP_EOL;
 		
