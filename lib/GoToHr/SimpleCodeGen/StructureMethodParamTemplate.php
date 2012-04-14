@@ -1,7 +1,7 @@
 <?php
 namespace GoToHr\SimpleCodeGen;
 
-class ClassMethodParamTemplate {
+class StructureMethodParamTemplate {
 	private $name;
 	private $type = null;
 	private $default = null;

@@ -11,8 +11,15 @@ class CodeGenerator {
 	
 	public function generate() {
 		$ns = $this->meta['ns'];
-		foreach ($this->meta['classes'] as $class_name => $class_def) {
-			ClassTemplate::fromArray($class_name, $class_def, $ns)->write();
-		}
+		
+		if(isset($this->meta['classes'])) 
+			foreach ($this->meta['classes'] as $name => $def) {
+				ClassTemplate::fromArray($name, $def, $ns)->write();
+			}
+		
+		if(isset($this->meta['interfaces'])) 
+			foreach ($this->meta['interfaces'] as $name => $def) {
+				InterfaceTemplate::fromArray($name, $def, $ns)->write();
+			}
 	}
 }
