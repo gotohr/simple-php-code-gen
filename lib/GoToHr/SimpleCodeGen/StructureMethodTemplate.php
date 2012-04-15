@@ -50,6 +50,9 @@ class StructureMethodTemplate {
 		if ($this->doc) {
 			$out.= "\t * {$this->doc}".PHP_EOL;
 		}
+		foreach ($this->params as $param_name => $param) {
+			$out.= "\t * @param {$param->getType()} \${$param->getName()}".PHP_EOL;
+		}
 		if ($this->type) {
 			$out.= "\t * @return {$this->type}".PHP_EOL;
 		}

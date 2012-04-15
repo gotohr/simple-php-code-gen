@@ -11,7 +11,10 @@ class StructureMethodParamTemplate {
 		$this->type = $type;
 		$this->default = $default;
 	}
-		
+	
+	public function getName() { return $this->name; }
+	public function getType() { return $this->type; }
+	
 	public function __toString() {
 		$out = '';
 		if ($this->type) $out.= "{$this->type} ";

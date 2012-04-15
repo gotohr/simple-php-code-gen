@@ -92,7 +92,7 @@ class StructureTemplate {
 	protected function generateBody() {
 		$out = '';
 		foreach ($this->methods as $method) {
-			$out.= $method;
+			$out.= $method.PHP_EOL;
 		}
 		return $out;
 	}
