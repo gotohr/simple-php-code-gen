@@ -41,6 +41,6 @@ class ClassMemberTemplate {
 		if ($this->default) {
 			$out.= " = {$this->default}";
 		}
-		return ';'.$out.PHP_EOL;
+		return $out.';'.PHP_EOL;
 	}
 }
