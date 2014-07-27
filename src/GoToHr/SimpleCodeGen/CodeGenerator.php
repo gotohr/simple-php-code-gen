@@ -4,22 +4,22 @@ namespace GoToHr\SimpleCodeGen;
 class CodeGenerator {
 	
 	private $meta = array();
-	
+
 	public function __construct($meta) {
 		$this->meta = $meta;
 	}
 	
-	public function generate() {
+	public function generate($path = './') {
 		$ns = $this->meta['ns'];
 		
 		if(isset($this->meta['classes'])) 
 			foreach ($this->meta['classes'] as $name => $def) {
-				ClassTemplate::fromArray($name, $def, $ns)->write();
+				ClassTemplate::fromArray($name, $def, $ns)->write($path);
 			}
 		
 		if(isset($this->meta['interfaces'])) 
 			foreach ($this->meta['interfaces'] as $name => $def) {
-				InterfaceTemplate::fromArray($name, $def, $ns)->write();
+				InterfaceTemplate::fromArray($name, $def, $ns)->write($path);
 			}
 	}
 }
